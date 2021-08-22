@@ -5,19 +5,13 @@ from emoji import demojize
 logging.basicConfig(level=logging.DEBUG,
                     format='%(message)s',
                     #datefmt='%Y-%m-%d_%H:%M:%S',
-                    handlers=[logging.FileHandler('chat.log', encoding='utf-8')])
-
-
-"""
-Get token here: https://twitchapps.com/tmi/
-"""
+                    handlers=[logging.FileHandler('chat.txt', encoding='utf-8')])
 
 server = 'irc.chat.twitch.tv'
 port = 6667
 nickname = 'and3ru'
 token = 'oauth:y047vzp3ac09vm3r6p49rkuk4bip8z'
-channel = '#nicklink'
-
+channel = '#revolta'
 
 def main():
     sock = socket.socket()
