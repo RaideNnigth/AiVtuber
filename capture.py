@@ -3,15 +3,15 @@ import logging
 from emoji import demojize
 
 logging.basicConfig(level=logging.DEBUG,
-                    format='%(message)s',
-                    #datefmt='%Y-%m-%d_%H:%M:%S',
-                    handlers=[logging.FileHandler('chat.txt', encoding='utf-8')])
+                    format='%(asctime)s — %(message)s',
+                    datefmt='%Y-%m-%d_%H:%M:%S',
+                    handlers=[logging.FileHandler('chat.log', encoding='utf-8')])
 
 server = 'irc.chat.twitch.tv'
 port = 6667
 nickname = 'and3ru'
 token = 'oauth:y047vzp3ac09vm3r6p49rkuk4bip8z'
-channel = '#revolta'
+channel = '#daniels'
 
 def main():
     sock = socket.socket()
@@ -23,14 +23,12 @@ def main():
     try:
         while True:
             resp = sock.recv(2048).decode('utf-8')
-
             if resp.startswith('PING'):
                 #sock.send("PONG :tmi.twitch.tv\n".encode('utf-8'))
                 sock.send("PONG\n".encode('utf-8'))
             elif len(resp) > 0:
                 logging.info(demojize(resp))
-            print(resp) 
-
+                
     except KeyboardInterrupt:
         sock.close()
         exit()
